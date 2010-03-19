@@ -15,7 +15,7 @@ package MT::Plugin::MTBooter;
 use strict;
 use base qw( MT::Plugin );
 
-our $VERSION = '0.14.1';
+our $VERSION = '0.14.3';
 
 my $dickens = "It was the best of times, it was the worst of times,
 it was the age of wisdom, it was the age of foolishness,
