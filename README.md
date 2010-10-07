@@ -39,7 +39,7 @@ TODO
 * **2009-04-18 — Version 0.14.1**
     * Includes a number of minor whitespace and formatting fixes
 * For all previous versions, please see [the old Subversion logs](http://code.sixapart.com/trac/mtplugins/log/trunk/MTBooter)
-    
+
 ## Support
 
 There is absolutely no support for this plugin. That said, if you really need
@@ -51,7 +51,7 @@ don't hesitate to fork it, fix it and send us a pull request.
 
 ## Author
 
-this plugin initially created by Chris Hall who was lead Movable Type QA
+This plugin initially created by Chris Hall who was lead Movable Type QA
 engineer at the time. Additional development and cleanup by:
 
 * Steve Cook (http://github.com/snark)
@@ -59,4 +59,4 @@ engineer at the time. Additional development and cleanup by:
 
 ## Copyright
 
-Copyright (c) 2007-2010 Six Apart. All rights reserved.
+Copyright (c) 2007-2010 Six Apart Ltd. All rights reserved.
