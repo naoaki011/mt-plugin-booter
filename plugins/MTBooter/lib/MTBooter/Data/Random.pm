@@ -106,7 +106,7 @@ sub random_comment {
     my $wabby = Acme::Wabby->new;
 
     #get seed text from settings
-    my $plugin = MT::Plugin::MTBooter->instance;
+    my $plugin = MT->component('MTBooter');
 
     my $seedtext = $plugin->get_config_value ('SeedText', 'system');
 
@@ -248,7 +248,7 @@ sub random_blog_name {
     );
 
     #get seed text from settings
-    my $plugin = MT::Plugin::MTBooter->instance;
+    my $plugin = MT->component('MTBooter');
 
     my $seedtext = $plugin->get_config_value ('SeedText', 'system');
 

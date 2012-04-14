@@ -130,7 +130,7 @@ sub create_entries {
 
         #now assign entry rating, if user has specified that
         if ($RateEntries) {
-            my $plugin = MT::Plugin::MTBooter->instance;
+            my $plugin = MT->component('MTBooter');
 
         #so all ratings will appear as if made by the logged in user? let's try randomizing that--not to mention the number of users who rated the entry
         #maybe try randomizing number of times the entry has been rated, and accept that there will be some redundant ratings (which will go down as the number of authors increases)
@@ -180,7 +180,7 @@ sub create_entries {
         #Acme::Wabby::import(qw(:errors));
 
         #get seed text from settings
-        my $plugin   = MT::Plugin::MTBooter->instance;
+        my $plugin   = MT->component('MTBooter');
         my $config   = $plugin->get_config_hash();
         my $seedtext = $config->{ SeedText };
 
@@ -265,7 +265,7 @@ sub create_demo {
 
     my $app = shift;
 
-    my $plugin = MT::Plugin::MTBooter->instance;
+    my $plugin = MT->component('MTBooter');
 
     #determine what template sets are available
 
@@ -1101,7 +1101,7 @@ sub add_cf_data_to_entry {
 
     my $meta = CustomFields::Util::get_meta($entry);
 
-    my $plugin   = MT::Plugin::MTBooter->instance;
+    my $plugin   = MT->component('MTBooter');
     my $config   = $plugin->get_config_hash();
     my $seedtext = $config->{ SeedText };
 
