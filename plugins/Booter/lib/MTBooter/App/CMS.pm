@@ -10,53 +10,47 @@
 # General Public License version 2 along with this program. If not, see
 # <http://www.gnu.org/licenses/>.
 
-package MTBooter::App::CMS;
+package Booter::App::CMS;
 
 use strict;
 use warnings;
 
 use base qw( MT::App );
 
-use MTBooter::Data;
+use Booter::Data;
 use MT::Util qw( remove_html dirify encode_html );
 
 #  eval { require CustomFields::Field }; if ($@) { print "It's not installed\n"; }
 
 sub plugin {
-    return MT->component('MTBooter');
+    return MT->component('Booter');
 }
 
 sub create_dummy_entries {
     my $app = shift;
-    #init($app);
     my $tmpl = $app->load_tmpl('booter.tmpl');
     my $params;
-    #set defaults if they aren't defined
     $params->{ 'NumberEntries' } = "10";
     $params->{ 'NumberPages' } = "0";
-    $params->{ 'RateEntries' } = "1";
+    $params->{ 'RateEntries' } = "0";
     $params->{ 'AddComments' } = "1";
     return $app->build_page( $tmpl, $params );
 }
 
-sub menu_create_categories {
+sub create_dummy_pages {
     my $app = shift;
-    my $plugin = MT->component('MTBooter');
-    my $blog_id = $app->{ query }->param('blog_id');
-    #actaully create the categories
-    create_categories($blog_id);
-    my $tmpl = $plugin->load_tmpl('booter_confirm.tmpl');
-    my $param;
-    $param->{ 'confirm_message' } =
-      "Your categories have been created successfully.";
-    $param->{ 'confirm_link' } = "Categories listing";
-    $param->{ 'confirm_mode' } = "list_cat";
-    return $app->build_page( $tmpl, $param );
+    my $tmpl = $app->load_tmpl('booter.tmpl');
+    my $params;
+    $params->{ 'NumberEntries' } = "0";
+    $params->{ 'NumberPages' } = "10";
+    $params->{ 'RateEntries' } = "0";
+    $params->{ 'AddComments' } = "1";
+    return $app->build_page( $tmpl, $params );
 }
 
 sub menu_create_entries {
     my $app = shift;
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
     my $config = $plugin->get_config_hash();
     #get parameters from settings
     my $NumberYears = int( $config->{ NumberYears } );
@@ -94,11 +88,26 @@ sub remove_entries {
     my @Entries = MT::Entry->load();
 }
 
+sub menu_create_categories {
+    my $app = shift;
+    my $plugin = MT->component('Booter');
+    my $blog_id = $app->{ query }->param('blog_id');
+    #actaully create the categories
+    create_categories($blog_id);
+    my $tmpl = $plugin->load_tmpl('booter_confirm.tmpl');
+    my $param;
+    $param->{ 'confirm_message' } =
+      "Your categories have been created successfully.";
+    $param->{ 'confirm_link' } = "Categories listing";
+    $param->{ 'confirm_mode' } = "list_cat";
+    return $app->build_page( $tmpl, $param );
+}
+
 sub menu_create_users {
 
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 
@@ -125,7 +134,7 @@ sub menu_create_test_blog {
 
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     #create the blog
 
@@ -171,7 +180,7 @@ sub menu_create_user_set {
 
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
     my $NumberUsers = $app->{ query }->param('NumberUsers');
@@ -200,7 +209,7 @@ sub menu_create_user_set {
 sub menu_create_custom_fields {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 
@@ -233,7 +242,7 @@ sub menu_create_custom_fields {
 sub menu_manage_template_mappings {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
     my $blog_id = $app->{ query }->param('blog_id');
 
     my $mapping_list = make_mapping_list($blog_id);
@@ -304,7 +313,7 @@ sub make_mapping_list {
 sub menu_create_baseline_blog {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     #create the blog
     my $blog_id = create_blog(
@@ -344,7 +353,7 @@ sub menu_create_baseline_blog {
 sub menu_add_categories {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 
@@ -369,7 +378,7 @@ sub menu_add_categories {
 sub menu_add_trackbacks {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 
@@ -394,7 +403,7 @@ sub menu_add_trackbacks {
 sub menu_add_assets {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 
@@ -447,7 +456,7 @@ sub show_create_userset_dialog {
 sub menu_create_blogs {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $config = $plugin->get_config_hash();
 
@@ -474,7 +483,7 @@ sub menu_create_blogs {
 sub menu_manage_module_caches {
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     my $blog_id = $app->{ query }->param('blog_id');
 

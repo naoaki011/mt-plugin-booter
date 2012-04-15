@@ -14,6 +14,7 @@
 <input type="hidden" name="blog_id" value="<mt:var name="blog_id">" />
 <input type="hidden" name="author_id" value="<mt:var name="author_id">" />
 
+<mt:if name="NumberEntries">
 <mtapp:setting
     id="NumberEntries"
     label_class="top-label"
@@ -22,8 +23,9 @@
     show_hint="1">
     <input type="text" name="NumberEntries" value="<mt:var name="NumberEntries">"/>
 </mtapp:setting>
+</mt:if>
 
-<!--
+<mt:if name="NumberPages">
 <mtapp:setting
     id="NumberPages"
     label_class="top-label"
@@ -32,25 +34,25 @@
     show_hint="1">
     <input type="text" name="NumberPages" value="<mt:var name="NumberPages">"/>
 </mtapp:setting>
+</mt:if>
 
-
-<mtapp:setting
+<mt:ignore><mtapp:setting
     id="NumberCats"
     label_class="top-label"
     label="<__trans phrase="How many top-level categories would you like to create?">"
     hint="Categories are like tags, only hierarchical and not as cool."
     show_hint="1">
     <input type="text" name="NumberCats" value="<mt:var name="NumberCats">"/>
-</mtapp:setting>
+</mtapp:setting></mt:ignore>
 
-<mtapp:setting
+<mt:ignore><mtapp:setting
     id="ClearEntries"
     label_class="top-label"
     label="<__trans phrase="Clear existing entries?">"
     hint="We don't recommend using this feature with production MT installs unless you are interested in taking a long, unpaid vacation."
     show_hint="1">
     <input type="checkbox" name="ClearEntries" id="ClearEntries" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Clear entries?">
-</mtapp:setting>-->
+</mtapp:setting></mt:ignore>
 
 <mtapp:setting
     id="AddCategories"

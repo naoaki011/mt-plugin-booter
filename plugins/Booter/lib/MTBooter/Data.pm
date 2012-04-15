@@ -10,7 +10,7 @@
 # General Public License version 2 along with this program. If not, see
 # <http://www.gnu.org/licenses/>.
 
-package MTBooter::Data;
+package Booter::Data;
 
 use base qw(Exporter Class::ErrorHandler);
 use vars qw(@EXPORT);
@@ -18,7 +18,7 @@ use strict;
 use warnings;
 
 use MT;
-use MTBooter::Data::Random;
+use Booter::Data::Random;
 use MT::Permission;
 
 @EXPORT = qw( create_category create_entries create_demo create_blog create_categories add_forums create_users create_user_set_for_blog
@@ -130,7 +130,7 @@ sub create_entries {
 
         #now assign entry rating, if user has specified that
         if ($RateEntries) {
-            my $plugin = MT->component('MTBooter');
+            my $plugin = MT->component('Booter');
 
         #so all ratings will appear as if made by the logged in user? let's try randomizing that--not to mention the number of users who rated the entry
         #maybe try randomizing number of times the entry has been rated, and accept that there will be some redundant ratings (which will go down as the number of authors increases)
@@ -180,7 +180,7 @@ sub create_entries {
         #Acme::Wabby::import(qw(:errors));
 
         #get seed text from settings
-        my $plugin   = MT->component('MTBooter');
+        my $plugin   = MT->component('Booter');
         my $config   = $plugin->get_config_hash();
         my $seedtext = $config->{ SeedText };
 
@@ -265,7 +265,7 @@ sub create_demo {
 
     my $app = shift;
 
-    my $plugin = MT->component('MTBooter');
+    my $plugin = MT->component('Booter');
 
     #determine what template sets are available
 
@@ -1034,7 +1034,7 @@ sub create_custom_field {
 
     $field->name($field_name);
 
-    $field->description("This field was created by MTBooter.");
+    $field->description("This field was created by Booter.");
 
     $field->obj_type($obj_type);
 
@@ -1101,7 +1101,7 @@ sub add_cf_data_to_entry {
 
     my $meta = CustomFields::Util::get_meta($entry);
 
-    my $plugin   = MT->component('MTBooter');
+    my $plugin   = MT->component('Booter');
     my $config   = $plugin->get_config_hash();
     my $seedtext = $config->{ SeedText };
 

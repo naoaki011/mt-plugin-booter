@@ -11,13 +11,14 @@
 # <http://www.gnu.org/licenses/>.
 
 
-id: MTBooter
+id: Booter
 name: MT Booter
-author_link: http://djchall.vox.com/
+author_link: http://fozboot.typepad.com/djchall-vox/
 author_name: Chris Ernest Hall
-plugin_link: http://djchall.com/plugins/
+plugin_link: https://github.com/movabletype/mt-plugin-booter
 description: <__trans phrase="QA/debugging tool for Movable Type">
 version: 0.14.4
+l10n_class: Booter::L10N
 
 system_config_template: booter_config.tmpl
 settings:
@@ -146,12 +147,13 @@ applications:
     cms:
         menus:
             entry:entry_booter:
-                label: Create Dummy Entries
+                label: Create Dummies
                 mode: create_dummy_entries
                 dialog: 1
-                order: 301
-                permission: administer_blog
+                order: 201
+                permission: administer
                 view: blog
+                condition: Booter::Util::is_mt5
             entry:category_booter:
                 label: Create Dummy Categories
                 mode: menu_create_categories
@@ -159,6 +161,7 @@ applications:
                 order: 302
                 permission: administer_blog
                 view: blog
+                condition: Booter::Util::is_mt5
             entry:entry_add_category:
                 label: Add Categories
                 mode: menu_add_categories
@@ -166,6 +169,7 @@ applications:
                 order: 307
                 permission: administer
                 view: blog
+                condition: Booter::Util::is_mt5
             entry:entry_add_trackback:
                 label: Add Trackbacks
                 mode: menu_add_trackbacks
@@ -173,98 +177,154 @@ applications:
                 order: 308
                 permission: administer
                 view: blog
+                condition: Booter::Util::is_mt5
+            #page:page_booter:
+            #    label: Create Dummies
+            #    mode: create_dummy_pages
+            #    dialog: 1
+            #    order: 201
+            #    permission: administer
+            #    view:
+            #        - blog
+            #        - website
+            #    condition: Booter::Util::is_mt5
+            #page:folder_booter:
+            #    label: Create Dummy Folders
+            #    mode: menu_create_folders
+            #    dialog: 1
+            #    order: 302
+            #    permission: administer_blog
+            #    view:
+            #      - blog
+            #      - website
+            #    condition: Booter::Util::is_mt5
+            #page:page_add_folder:
+            #    label: Add Folders
+            #    mode: menu_add_folder
+            #    dialog: 1
+            #    order: 307
+            #    permission: administer
+            #      - blog
+            #      - website
+            #    condition: Booter::Util::is_mt5
+            #page:page_add_trackback:
+            #    label: Add Trackbacks
+            #    mode: menu_add_trackbacks
+            #    dialog: 1
+            #    order: 308
+            #    permission: administer
+            #      - blog
+            #      - website
+            #    condition: Booter::Util::is_mt5
             asset:asset_booter:
-                label: Add Dummy Assets
+                label: Create Dummies
                 mode: menu_add_assets
                 dialog: 1
                 order: 1000
                 permission: administer
-                view: blog
+                view:
+                    - blog
+                    - website
+                condition: Booter::Util::is_mt5
             design:mapping_booter:
-                label: Create Dummy Template Mappings
+                label: Template Mappings
                 mode: menu_manage_template_mappings
-                dialog: 1
                 order: 10000,
                 permission: administer
-                view: blog
+                view:
+                    - blog
+                    - website
             design:set_module_caches_booter:
-                label: Set Dummy Module Caches
+                label: Module Caches
                 mode: menu_manage_module_caches
-                dialog: 1
                 order: 11000,
                 permission: administer
-                view: blog
+                view:
+                    - blog
+                    - website
             custom_fields:field_booter:
-                label: Create Dummy CustomFields
+                label: Create Dummies
                 mode: menu_create_custom_fields
                 dialog: 1
                 order: 310,
                 permission: administer
-                view: blog
+                condition: Booter::Util::mt5_has_custom_field
             user:user_booter:
-                label: User Set
+                label: Add Users to Blog
                 mode: menu_create_user_set
                 dialog: 1
                 order: 306,
                 permission: administer
-                view: blog
-            user:user_booters:
+                view:
+                    - blog
+                    - website
+            user:userset_booter:
                 label: Create User Set
                 mode: show_create_userset_dialog
                 dialog: 1
                 order: 311,
                 permission: administer
-                view: blog
+                view:
+                    - blog
+                    - website
             user:users_booter:
-                label: Create Dummy Users
+                label: Create Dummies
                 mode: menu_create_users
                 dialog: 1
                 order: 304
                 permission: administer
                 view: system
             blog:blog_booter:
-                label: Create Dummy Blogs
+                label: Create Dummies
                 mode: show_blogs_dialog
                 dialog: 1
                 order: 305
                 permission: administer
                 view: system
-            tools:booter2:
-                label: Create Demo Site
-                mode: create_demo
-                dialog: 1
-                order: 301,
-                permission: administer
-                view: system
-            tools:booter5:
-                label: Create Test Blog
-                mode: menu_create_test_blog
-                dialog: 1
-                order: 302,
-                permission: administer
-                view: system
-            tools:booter9:
-                label: Create Baseline Blog
-                mode: menu_create_baseline_blog
-                dialog: 1
-                order: 303,
-                permission: administer
-                view: system
+            #website:website_booter:
+            #    label: Create Dummies
+            #    mode: show_websites_dialog
+            #    dialog: 1
+            #    order: 305
+            #    permission: administer
+            #    view: system
+            #tools:demosite_booter:
+            #    label: Create Demo Site
+            #    mode: create_demo
+            #    dialog: 1
+            #    order: 301,
+            #    permission: administer
+            #    view: system
+            #tools:testblog_booter:
+            #    label: Create Test Blog
+            #    mode: menu_create_test_blog
+            #    dialog: 1
+            #    order: 302,
+            #    permission: administer
+            #    view: system
+            #tools:baseline_booter:
+            #    label: Create Baseline Blog
+            #    mode: menu_create_baseline_blog
+            #    dialog: 1
+            #    order: 303,
+            #    permission: administer
+            #    view: system
         methods:
-            create_dummy_entries:    $MTBooter::MTBooter::App::CMS::create_dummy_entries
-            menu_create_categories:  $MTBooter::MTBooter::App::CMS::menu_create_categories
-            menu_create_entries:     $MTBooter::MTBooter::App::CMS::menu_create_entries
-            menu_create_users:       $MTBooter::MTBooter::App::CMS::menu_create_users
-            menu_create_blogs:       $MTBooter::MTBooter::App::CMS::menu_create_blogs
-            menu_add_categories:     $MTBooter::MTBooter::App::CMS::menu_add_categories
-            menu_add_trackbacks:     $MTBooter::MTBooter::App::CMS::menu_add_trackbacks
-            menu_add_assets:         $MTBooter::MTBooter::App::CMS::menu_add_assets
-            show_blogs_dialog:       $MTBooter::MTBooter::App::CMS::show_blogs_dialog
-            menu_create_custom_fields: $MTBooter::MTBooter::App::CMS::menu_create_custom_fields
-            menu_manage_template_mappings: $MTBooter::MTBooter::App::CMS::menu_manage_template_mappings
-            menu_manage_module_caches: $MTBooter::MTBooter::App::CMS::menu_manage_module_caches
-            create_demo:             $MTBooter::MTBooter::App::CMS::create_demo
-            menu_create_test_blog:   $MTBooter::MTBooter::App::CMS::menu_create_test_blog
-            menu_create_baseline_blog: $MTBooter::MTBooter::App::CMS::menu_create_baseline_blog
-            menu_create_user_set:    $MTBooter::MTBooter::App::CMS::menu_create_user_set
-            show_create_userset_dialog: $MTBooter::MTBooter::App::CMS::show_create_userset_dialog
+            create_dummy_entries:       $Booter::Booter::App::CMS::create_dummy_entries
+            #create_dummy_pages:         $Booter::Booter::App::CMS::create_dummy_pages
+            menu_create_entries:        $Booter::Booter::App::CMS::menu_create_entries
+            menu_create_categories:     $Booter::Booter::App::CMS::menu_create_categories
+            menu_add_categories:        $Booter::Booter::App::CMS::menu_add_categories
+            menu_add_trackbacks:        $Booter::Booter::App::CMS::menu_add_trackbacks
+            menu_add_assets:            $Booter::Booter::App::CMS::menu_add_assets
+            menu_create_user_set:       $Booter::Booter::App::CMS::menu_create_user_set
+            show_create_userset_dialog: $Booter::Booter::App::CMS::show_create_userset_dialog
+            menu_create_custom_fields:  $Booter::Booter::App::CMS::menu_create_custom_fields
+            menu_manage_template_mappings: $Booter::Booter::App::CMS::menu_manage_template_mappings
+            menu_manage_module_caches:  $Booter::Booter::App::CMS::menu_manage_module_caches
+            menu_create_users:          $Booter::Booter::App::CMS::menu_create_users
+            menu_create_blogs:          $Booter::Booter::App::CMS::menu_create_blogs
+            show_blogs_dialog:          $Booter::Booter::App::CMS::show_blogs_dialog
+            #create_demo:                $Booter::Booter::App::CMS::create_demo
+            #menu_create_test_blog:      $Booter::Booter::App::CMS::menu_create_test_blog
+            #menu_create_baseline_blog:  $Booter::Booter::App::CMS::menu_create_baseline_blog
