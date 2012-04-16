@@ -19,7 +19,7 @@
     id="NumberEntries"
     label_class="top-label"
     label="<__trans phrase="How many entries would you like to create?">"
-    hint="Enter the number of entries you want to create, fool!"
+    hint="<__trans phrase="Enter the number of entries you want to create,">"
     show_hint="1">
     <input type="text" name="NumberEntries" value="<mt:var name="NumberEntries">"/>
 </mtapp:setting>
@@ -30,7 +30,7 @@
     id="NumberPages"
     label_class="top-label"
     label="<__trans phrase="How many Pages would you like to create?">"
-    hint="Pages, not pages, got it?"
+    hint="<__trans phrase="Enter the number of pages you want to create,">"
     show_hint="1">
     <input type="text" name="NumberPages" value="<mt:var name="NumberPages">"/>
 </mtapp:setting>
@@ -40,7 +40,7 @@
     id="NumberCats"
     label_class="top-label"
     label="<__trans phrase="How many top-level categories would you like to create?">"
-    hint="Categories are like tags, only hierarchical and not as cool."
+    hint="<__trans phrase="Categories are like tags, only hierarchical and not as cool.">"
     show_hint="1">
     <input type="text" name="NumberCats" value="<mt:var name="NumberCats">"/>
 </mtapp:setting></mt:ignore>
@@ -51,43 +51,43 @@
     label="<__trans phrase="Clear existing entries?">"
     hint="We don't recommend using this feature with production MT installs unless you are interested in taking a long, unpaid vacation."
     show_hint="1">
-    <input type="checkbox" name="ClearEntries" id="ClearEntries" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Clear entries?">
+    <input type="checkbox" name="ClearEntries" id="ClearEntries" value="1" <mt:if name="EXCERPT_ONLY">checked="checked"</mt:if> />&nbsp;<MT_TRANS phrase="Clear entries?">
 </mtapp:setting></mt:ignore>
 
 <mtapp:setting
     id="AddCategories"
-    label_class="top-label"
+    label_class="no-header"
     label="<__trans phrase="Add categories">"
-    hint="Will add a random number of categories and sub-categories to the entries that are created."
+    hint="<__trans phrase="Will add a random number of categories and sub-categories to the entries that are created.">"
     show_hint="1">
-    <input type="checkbox" name="AddCategories" id="AddCategories" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Add categories">
+    <input type="checkbox" name="AddCategories" id="AddCategories" value="1" <mt:if name="EXCERPT_ONLY">checked="checked"</mt:if> />&nbsp;<MT_TRANS phrase="Add categories">
 </mtapp:setting>
 
 <mtapp:setting
     id="AddComments"
-    label_class="top-label"
+    label_class="no-header"
     label="<__trans phrase="Add comments">"
-    hint="Will add a random number of comments and comment replies to some of the entries that are created."
+    hint="<__trans phrase="Will add a random number of comments and comment replies to some of the entries that are created.">"
     show_hint="1">
-    <input type="checkbox" name="AddComments" id="AddComments" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Add comments">
+    <input type="checkbox" name="AddComments" id="AddComments" value="1" <mt:if name="EXCERPT_ONLY">checked="checked"</mt:if> />&nbsp;<MT_TRANS phrase="Add comments">
 </mtapp:setting>
 
 <mtapp:setting
     id="AddCFData"
-    label_class="top-label"
+    label_class="no-header"
     label="<__trans phrase="Add Custom Fields data">"
-    hint="Will add randomly generated data to all entry custom fields."
+    hint="<__trans phrase="Will add randomly generated data to all entry custom fields.">"
     show_hint="1">
-    <input type="checkbox" name="AddCFData" id="AddCFData" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Add Custom Fields data">
+    <input type="checkbox" name="AddCFData" id="AddCFData" value="1" <mt:if name="EXCERPT_ONLY">checked="checked"</mt:if> />&nbsp;<MT_TRANS phrase="Add Custom Fields data">
 </mtapp:setting>
 
 <mtapp:setting
     id="RateEntries"
-    label_class="top-label"
+    label_class="no-header"
     label="<__trans phrase="Rate entries">"
-    hint="Will assign random scores to some of the entries that are created."
+    hint="<__trans phrase="Will assign random scores to some of the entries that are created.">"
     show_hint="1">
-    <input type="checkbox" name="RateEntries" id="RateEntries" value="1" <TMPL_IF NAME="EXCERPT_ONLY">checked="checked"</TMPL_IF> />&nbsp;<MT_TRANS phrase="Rate entries?">
+    <input type="checkbox" name="RateEntries" id="RateEntries" value="1" <mt:if name="EXCERPT_ONLY">checked="checked"</mt:if> />&nbsp;<MT_TRANS phrase="Rate entries?">
 </mtapp:setting>
 
 <mtapp:setting
