@@ -166,10 +166,18 @@ applications:
                 label: Add Categories
                 mode: menu_add_categories
                 dialog: 1
-                order: 307
+                order: 304
                 permission: administer
                 view: blog
                 condition: Booter::Util::is_mt5
+            #entry:entry_add_comment:
+            #    label: Add Comments
+            #    mode: menu_add_comments
+            #    dialog: 1
+            #    order: 307
+            #    permission: administer
+            #    view: blog
+            #    condition: Booter::Util::is_mt5
             entry:entry_add_trackback:
                 label: Add Trackbacks
                 mode: menu_add_trackbacks
